@@ -6,7 +6,7 @@ kill_timeout = 5
 processes = []
 
 [build]
-  dockerfile = "app.dockerfile"
+  dockerfile = "./deploy/attendance-system/app.dockerfile"
 
 [env]
   APP_ENV = "production"
