@@ -1,0 +1,11 @@
+app:
+  host: 127.0.0.1
+  port: 8080
+
+database:
+  driver: mysql
+  host: attendance-system-001-db.internal
+  port: 3306
+  username: root
+  password: 123
+  name: attendance

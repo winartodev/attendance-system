@@ -1,0 +1,24 @@
+# fly.toml file generated for attendance-system-001-db on 2023-01-01T13:52:48+07:00
+
+app = "attendance-system-001-db"
+kill_signal = "SIGINT"
+kill_timeout = 5
+processes = []
+
+[mounts]
+  source="mysqldata"
+  destination="/data"
+
+[env]
+  MYSQL_DATABASE = "attendance"
+
+[build]
+  image = "mysql:8"
+
+[experimental]
+  cmd = [
+    "--default-authentication-plugin", "mysql_native_password",
+    "--datadir", "/data/mysql",
+    "--performance-schema=OFF",
+    "--innodb-buffer-pool-size", "64M"
+  ]
