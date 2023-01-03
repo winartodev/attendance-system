@@ -5,6 +5,7 @@ import (
 	"log"
 
 	"github.com/labstack/echo/v4"
+	"github.com/labstack/echo/v4/middleware"
 	"github.com/winartodev/attencande-system/config"
 	"github.com/winartodev/attencande-system/repository"
 	"github.com/winartodev/attencande-system/server"
@@ -56,6 +57,8 @@ func main() {
 		UserHandler:       userHandler,
 		ReminderHandler:   reminderHandler,
 	}
+
+	s.Echo.Use(middleware.CORS())
 
 	s.Routes()
 
