@@ -12,14 +12,17 @@ import (
 
 type AttendanceHandler struct {
 	AttendanceUsecase usecase.AttendanceUsecaseItf
+	Reminder          ReminderHandler
 }
 
 func NewAttendanceUsecase(attendanceHandler AttendanceHandler) AttendanceHandler {
 	return AttendanceHandler{
 		AttendanceUsecase: attendanceHandler.AttendanceUsecase,
+		Reminder:          attendanceHandler.Reminder,
 	}
 }
 
+// CreateAttendanceHandler handle create new attendance
 func (ah *AttendanceHandler) CreateAttendanceHandler(c echo.Context) error {
 	ctx := c.Request().Context()
 
@@ -40,6 +43,15 @@ func (ah *AttendanceHandler) CreateAttendanceHandler(c echo.Context) error {
 		})
 	}
 
+	// after create attendance success will publish reminder
+	err = ah.Reminder.PublishReminder(ctx, "reminder.event.publish", attendance)
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, helper.ResponseFailed{
+			Status:  http.StatusText(http.StatusInternalServerError),
+			Message: err.Error(),
+		})
+	}
+
 	return c.JSON(http.StatusOK, helper.ResponseSuccess{
 		Status:  http.StatusText(http.StatusOK),
 		Message: "Attendance success created",
@@ -47,6 +59,7 @@ func (ah *AttendanceHandler) CreateAttendanceHandler(c echo.Context) error {
 
 }
 
+// GetAllAttendanceHandler handle get all attendacne
 func (ah *AttendanceHandler) GetAllAttendanceHandler(c echo.Context) error {
 	ctx := c.Request().Context()
 
@@ -67,6 +80,7 @@ func (ah *AttendanceHandler) GetAllAttendanceHandler(c echo.Context) error {
 	})
 }
 
+// GetAttendanceByIDHandler handle get attendance by specific id
 func (ah *AttendanceHandler) GetAttendanceByIDHandler(c echo.Context) error {
 	id, _ := strconv.ParseInt(c.Param("id"), 16, 64)
 	ctx := c.Request().Context()
@@ -88,6 +102,7 @@ func (ah *AttendanceHandler) GetAttendanceByIDHandler(c echo.Context) error {
 	})
 }
 
+// UpdateAttendanceByIDHandler will update attendance
 func (ah *AttendanceHandler) UpdateAttendanceByIDHandler(c echo.Context) error {
 	id, _ := strconv.ParseInt(c.Param("id"), 16, 64)
 	ctx := c.Request().Context()
@@ -108,6 +123,14 @@ func (ah *AttendanceHandler) UpdateAttendanceByIDHandler(c echo.Context) error {
 			Message: err.Error(),
 		})
 	}
+	// after update success wil publish reminder
+	err = ah.Reminder.PublishReminder(ctx, "reminder.event.publish", attendance)
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, helper.ResponseFailed{
+			Status:  http.StatusText(http.StatusInternalServerError),
+			Message: err.Error(),
+		})
+	}
 
 	return c.JSON(http.StatusOK, helper.ResponseSuccess{
 		Status:  http.StatusText(http.StatusOK),
@@ -115,6 +138,7 @@ func (ah *AttendanceHandler) UpdateAttendanceByIDHandler(c echo.Context) error {
 	})
 }
 
+// DeleteAttendanceByIDHandler will delete attendance by specific id
 func (ah *AttendanceHandler) DeleteAttendanceByIDHandler(c echo.Context) error {
 	id, _ := strconv.ParseInt(c.Param("id"), 16, 64)
 	ctx := c.Request().Context()

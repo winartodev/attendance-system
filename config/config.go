@@ -1,7 +1,6 @@
 package config
 
 import (
-	"fmt"
 	"io/ioutil"
 	"log"
 	"os"
@@ -9,6 +8,7 @@ import (
 	"gopkg.in/yaml.v2"
 )
 
+// Config is struct to store all config from yaml file
 type Config struct {
 	App struct {
 		Host string `yaml:"host"`
@@ -26,13 +26,17 @@ type Config struct {
 	} `yaml:"database"`
 
 	SMTP struct {
-		Host        string
-		Port        string
-		SenderEmail string
-		Password    string
-	}
+		Host string `yaml:"host"`
+		Port string `yaml:"port"`
+	} `yaml:"smtp"`
+
+	AMQP struct {
+		Host string `yaml:"host"`
+		Port string `yaml:"port"`
+	} `yaml:"amqp"`
 }
 
+// NewConfig will read file and return config struct
 func (c Config) NewConfig() Config {
 
 	var filepath string
@@ -54,11 +58,5 @@ func (c Config) NewConfig() Config {
 		return c
 	}
 
-	c.SMTP.Host = os.Getenv("SMTP_HOST")
-	c.SMTP.Port = os.Getenv("SMTP_PORT")
-	c.SMTP.SenderEmail = os.Getenv("SMTP_SENDER_EMAIL")
-	c.SMTP.Password = os.Getenv("SMTP_PASSWORD")
-
-	fmt.Println(c)
 	return c
 }

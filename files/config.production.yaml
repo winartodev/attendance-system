@@ -9,3 +9,11 @@ database:
   username: root
   password: 123
   name: attendance
+
+smtp: 
+  host: smtp.gmail.com
+  port: 587
+
+amqp: 
+  host: amqp-rabbitmq.internal
+  port: 5672
