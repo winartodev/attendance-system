@@ -1,0 +1,42 @@
+# fly.toml file generated for amqp-rabbitmq on 2023-01-03T07:35:13+07:00
+
+app = "amqp-rabbitmq"
+kill_signal = "SIGINT"
+kill_timeout = 5
+processes = []
+
+[build]
+  dockerfile = "amqp.dockerfile"
+
+[experimental]
+  allowed_public_ports = []
+  auto_rollback = true
+
+[[services]]
+  http_checks = []
+  internal_port = 5672
+  processes = ["app"]
+  protocol = "tcp"
+  script_checks = []
+  
+  [[services.tcp_checks]]
+    grace_period = "1s"
+    interval = "15s"
+    restart_limit = 0
+    timeout = "2s"
+
+[[services]]
+  http_checks = []
+  internal_port = 15672
+  protocol = "tcp"
+  script_checks = []
+
+  [[services.ports]]
+    handlers = ["http", "tls"]
+    port = "15672"
+
+  [[services.tcp_checks]]
+    grace_period = "1s"
+    interval = "15s"
+    restart_limit = 0
+    timeout = "2s"

@@ -1,12 +1,9 @@
 package server
 
 import (
-	"context"
-	"log"
 	"net/http"
 
 	"github.com/labstack/echo"
-	"github.com/robfig/cron/v3"
 	"github.com/winartodev/attencande-system/middleware"
 )
 
@@ -47,15 +44,4 @@ func (s *Server) Routes() {
 	}
 
 	s.Echo.GET("/healthz", healthz)
-}
-
-func (s *Server) StartCron() {
-	c := cron.New()
-	c.AddFunc("@every 1s", func() {
-		err := s.ReminderHandler.StartReminder(context.TODO())
-		if err != nil {
-			log.Fatal(err)
-		}
-	})
-	c.Start()
 }
