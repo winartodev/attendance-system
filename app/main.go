@@ -29,7 +29,7 @@ func main() {
 
 	rmq, err := config.NewRabbitMQ(cfg)
 	if err != nil {
-		log.Fatal("failed connect to RabbitMQ error: %v", err)
+		log.Fatal("Automigration failed error: %v", err)
 	}
 	defer rmq.Shutdown()
 
