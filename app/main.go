@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/labstack/echo"
+	"github.com/labstack/echo/v4"
 	"github.com/winartodev/attencande-system/config"
 	"github.com/winartodev/attencande-system/repository"
 	"github.com/winartodev/attencande-system/server"
