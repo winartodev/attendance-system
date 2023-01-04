@@ -1,7 +1,6 @@
 package middleware
 
 import (
-	"fmt"
 	"net/http"
 	"strings"
 
@@ -12,7 +11,6 @@ import (
 func Authentication(next echo.HandlerFunc) echo.HandlerFunc {
 	return func(c echo.Context) error {
 		authorizationHeader := c.Request().Header.Get("Authorization")
-		fmt.Println(authorizationHeader)
 		if !strings.Contains(authorizationHeader, "Bearer") {
 			return c.JSON(http.StatusUnauthorized, helper.ResponseFailed{
 				Status:  http.StatusText(http.StatusUnauthorized),
