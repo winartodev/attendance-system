@@ -15,7 +15,7 @@ attendance application using the golang application with the clockin reminder an
 - Authentication with bearer token using JWT
 - CRUD Employee, Attendance
 - Reminder using RabbitMQ as a message broker
-- API Docs [swagger](./docs/api_docs.yaml)
+- API Docs [swagger.yaml](./docs/swagger.yaml)
 - Implement CI
 - deployed via fly.io 
 
