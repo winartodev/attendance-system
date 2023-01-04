@@ -5,14 +5,24 @@ info:
 servers:
   - url: https://attendance-system-001.fly.dev
 paths:
-  /user/login:
+  /users/login:
     post:
       tags:
         - "user"
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:            
+              type: object
+              properties:    
+                username:           
+                  type: string
+                password:     
+                  type: string
       responses:
         '200':
           description: OK
-  /user/register:
+  /users/register:
     post:
       tags:
         - "user"
@@ -32,7 +42,7 @@ paths:
                 status: "OK"
                 message: "User success registered"
                 data: null
-  /user/logout:
+  /users/logout:
     post: 
       tags:
         - "user"

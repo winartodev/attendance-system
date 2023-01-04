@@ -1,0 +1,372 @@
+{
+	"info": {
+		"_postman_id": "a7cd5cb6-0c2d-4946-a2d2-2fe7c6070a46",
+		"name": "Attendance",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16727372"
+	},
+	"item": [
+		{
+			"name": "Employee",
+			"item": [
+				{
+					"name": "CreateEmployee",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"andi\",\n  \"email\": \"andi@mail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/admin/employees",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admin",
+								"employees"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateEmployeeByID",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\":\"22\",\n  \"email\":\"2207zing@gmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/admin/employees/2",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admin",
+								"employees",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllEmployee",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/admin/employees",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admin",
+								"employees"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetEmployeeByID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/admin/employees/2",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admin",
+								"employees",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteEmployeeByID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/admin/employees/2",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admin",
+								"employees",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Attendance",
+			"item": [
+				{
+					"name": "CreateAttendance",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"employee_id\": 1,\n  \"clocked_in\": \"2023-01-04T14:32:00+07:00\",\n  \"clocked_out\": \"2023-01-04T14:33:00+07:00\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/admin/attendances",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admin",
+								"attendances"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateAttendanceByID",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"employee_id\": 1,\n  \"clocked_in\": \"2023-01-04T14:33:00+07:00\",\n  \"clocked_out\": \"2023-01-04T14:34:00+07:00\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/admin/attendances/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admin",
+								"attendances",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllAttendance",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/admin/attendances",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admin",
+								"attendances"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAttendanceByID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/admin/attendances/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admin",
+								"attendances",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteAttendanceByID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/admin/attendances/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admin",
+								"attendances",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"username\": \"winarto\",\n  \"password\": \"123\",\n  \"role\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/users/register",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"users",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Logout",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"username\": \"winarto\",\n  \"password\": \"123\",\n  \"role\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/users/logout",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"users",
+						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "winarto",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/users/login",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"users",
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VybmFtZSI6IndpbmFydG8iLCJSb2xlIjoxLCJleHAiOjE2NzI5MDM2MDl9.3gc1yZx9hoMXh14J3Q_rMGiY3dqLa7pqPP_KAwmqlOM",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": ":8080",
+			"type": "string",
+			"disabled": true
+		},
+		{
+			"key": "base_url",
+			"value": "attendance-system-001.fly.dev",
+			"type": "string"
+		}
+	]
+}
