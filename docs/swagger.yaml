@@ -1,6 +1,12 @@
 openapi: '3.0.2'
 info:
   title: Attendance System
+  description: |-
+    Here is attendance system API. We can login, register account, create employee, and set clock in and clocked out
+    to use this api we must login first and get the token in data field, to login u can use this account below <br>
+      + username: admin, 
+      + password: admin
+
   version: '1.0'
 servers:
   - url: https://attendance-system-001.fly.dev
@@ -17,11 +23,21 @@ paths:
               properties:    
                 username:           
                   type: string
+                  example: admin
                 password:     
                   type: string
+                  example: admin
       responses:
         '200':
-          description: OK
+          description: User success loggedin 
+          content:
+            application/json:
+              schema: 
+                  $ref: '#/components/schemas/SuccessResponse'
+              example:
+                status: "OK"
+                message: "User success logged in"
+                data: "<token_api>"
   /users/register:
     post:
       tags:
