@@ -2,7 +2,6 @@ package server
 
 import (
 	"net/http"
-	"time"
 
 	"github.com/labstack/echo/v4"
 	"github.com/winartodev/attencande-system/ent"
@@ -80,27 +79,14 @@ func (uh *UserHandler) LoginHandler(c echo.Context) error {
 		})
 	}
 
-	c.SetCookie(&http.Cookie{
-		Name:     "Token",
-		Value:    token,
-		Expires:  time.Now().Add(time.Hour * time.Duration(24)),
-		HttpOnly: true,
-	})
-
 	return c.JSON(http.StatusOK, helper.ResponseSuccess{
 		Status:  http.StatusText(http.StatusOK),
 		Message: "Success Loggedin",
+		Data:    token,
 	})
 }
 
 func (uh *UserHandler) LogoutHandler(c echo.Context) error {
-	c.SetCookie(&http.Cookie{
-		Name:     "Token",
-		Value:    "",
-		MaxAge:   -1,
-		HttpOnly: true,
-	})
-
 	return c.JSON(http.StatusOK, helper.ResponseSuccess{
 		Status:  http.StatusText(http.StatusOK),
 		Message: "Success logout",
