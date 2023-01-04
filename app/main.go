@@ -4,7 +4,8 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/labstack/echo"
+	"github.com/labstack/echo/v4"
+	"github.com/labstack/echo/v4/middleware"
 	"github.com/winartodev/attencande-system/config"
 	"github.com/winartodev/attencande-system/repository"
 	"github.com/winartodev/attencande-system/server"
@@ -29,7 +30,7 @@ func main() {
 
 	rmq, err := config.NewRabbitMQ(cfg)
 	if err != nil {
-		log.Fatal("failed connect to RabbitMQ error: %v", err)
+		log.Fatal("Automigration failed error: %v", err)
 	}
 	defer rmq.Shutdown()
 
@@ -56,6 +57,8 @@ func main() {
 		UserHandler:       userHandler,
 		ReminderHandler:   reminderHandler,
 	}
+
+	s.Echo.Use(middleware.CORS())
 
 	s.Routes()
 
